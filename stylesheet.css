@@ -1,0 +1,9 @@
+body {
+  background-color: #f5f5f5;
+  text-align: center;
+  overscroll-behavior: none;
+}
+
+canvas {
+  box-shadow: 0 0 10px 2px #000;
+}
