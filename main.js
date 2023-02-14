@@ -35,7 +35,7 @@ update()
 
 function update() {
   canvas.clean()
-  // physics.update()
+  physics.update()
   points.update(physics)
   for (let i = 0; i < 3; i++) {
     sticks.update()
