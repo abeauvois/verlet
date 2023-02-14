@@ -5,24 +5,26 @@ import * as physics from './physics.js'
 import * as sticks from './sticks.js'
 import * as points from './points.js'
 
+// Init world
 var canvas = new Canvas({
   element: '#canvas',
   width: 500,
   height: 500,
+  onClick: ([x, y]) => {
+    sticks.removeBy({ x, y })
+  },
 })
 
-export let geometry = createSquare({ x: 100, y: 100 }, 50)
+const square = createSquare({ x: 100, y: 100 }, 50)
 const chain = createChain({ x: 100, y: 100 }, 50, 3)
 
-geometry = [...geometry, ...chain]
+const geometry = points.add([...square, ...chain])
 
-points.add(geometry)
-
-physics.createEngine({ x: 250, y: 100 })
+physics.addEngine({ x: 250, y: 100 })
 
 sticks.createFromPoints(geometry.slice(0, 4))
 sticks.add(geometry[3], geometry[0])
-// Add diagonal to square
+// Add diagonal stick to square
 sticks.add(geometry[0], geometry[2], true)
 // Chain
 sticks.add(physics.engine, geometry[4])
@@ -33,7 +35,7 @@ update()
 
 function update() {
   canvas.clean()
-  physics.updateEngine()
+  // physics.update()
   points.update(physics)
   for (let i = 0; i < 3; i++) {
     sticks.update()

@@ -13,11 +13,11 @@ export const bounce = 0.9
 export const gravity = 0.5
 export const friction = 0.99
 
-export function createEngine(p0) {
+export function addEngine(p0) {
   return { ...engine, baseX: p0?.x ?? engine.baseX, baseY: p0?.y ?? engine.baseY }
 }
 
-export function updateEngine() {
+export function update() {
   engine.x = engine.baseX + Math.cos(engine.angle) * engine.range
   engine.angle += engine.speed
 }

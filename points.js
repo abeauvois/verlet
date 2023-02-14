@@ -2,6 +2,11 @@ let items = []
 
 export function add(points) {
   items = items.concat(points)
+  return items
+}
+
+export function all() {
+  return items
 }
 
 export function update({ friction, gravity }) {

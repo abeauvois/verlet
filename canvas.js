@@ -4,6 +4,7 @@ export class Canvas {
     this.width = options.width
     this.height = options.height
     this.paths = []
+    this.onClick = options.onClick
     this.#init()
   }
 
@@ -16,6 +17,7 @@ export class Canvas {
     this.canvas = document.createElement('canvas')
     this.canvas.width = this.width
     this.canvas.height = this.height
+    this.style = this.canvas.style
     this.canvas.style.border = '1px solid #000'
     this.context = this.canvas.getContext('2d')
     document.querySelector(this.element).appendChild(this.canvas)
@@ -26,6 +28,7 @@ export class Canvas {
       const mouse = this.#getMouse(evt)
       this.isDrawing = true
       this.paths.push([mouse])
+      this.onClick(mouse)
     }
   }
 
