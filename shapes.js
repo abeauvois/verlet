@@ -39,3 +39,18 @@ export function createChain(p0, size, n) {
   }
   return items
 }
+
+// function renderShapes() {
+//   for (let i = 0; i < shapes.length; i++) {
+//     const s = shapes[i]
+//     canvas.context.beginPath()
+//     canvas.context.fillStyle = s.color
+//     canvas.context.moveTo(s.path[0].x, s.path[0].y)
+//     for (let j = 0; j < s.path.length; j++) {
+//       const p = s.path[j]
+//       canvas.context.lineTo(p.x, p.y)
+//       canvas.context.fill()
+//     }
+//   }
+//   canvas.context.stroke()
+// }

@@ -1,7 +1,7 @@
 export const engine = {
   baseX: 250,
   baseY: 100,
-  range: 200,
+  range: 150,
   angle: 0,
   speed: 0.05,
   x: 150,
@@ -28,8 +28,8 @@ export function renderEngine(canvas) {
   context.beginPath()
   context.rect(engine.baseX - engine.range, engine.baseY - 5, engine.range * 2, 10)
   context.stroke()
-  context.beginPath()
 
+  context.beginPath()
   context.arc(engine.x, engine.y, 5, 0, Math.PI * 2)
   context.fill()
 }
