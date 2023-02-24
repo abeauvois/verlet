@@ -1,4 +1,4 @@
-export const engine = {
+export let engine = {
   baseX: 250,
   baseY: 100,
   range: 150,
@@ -11,10 +11,11 @@ export const engine = {
 
 export const bounce = 0.9
 export const gravity = 0.5
-export const friction = 0.99
+export const friction = 0.999
 
 export function addEngine(p0) {
-  return { ...engine, baseX: p0?.x ?? engine.baseX, baseY: p0?.y ?? engine.baseY }
+  engine = { ...engine, baseX: p0?.x ?? engine.baseX, baseY: p0?.y ?? engine.baseY }
+  return this
 }
 
 export function update() {

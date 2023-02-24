@@ -10,7 +10,7 @@ export function init(options) {
     height: options.height || 500,
     onClick: options.onClick,
   })
-  return canvas
+  return this
 }
 
 export function update({ physics, sticks, points }) {

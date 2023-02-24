@@ -1,8 +1,12 @@
-import { createSquare, createChain } from './shapes.js'
 import * as physics from './physics.js'
 import * as sticks from './sticks.js'
 import * as points from './points.js'
 import * as world from './world.js'
+import * as game from './game.js'
+
+import * as data from './data.js'
+
+const components = { world, physics, sticks, points }
 
 world.init({
   onClick: ([x, y]) => {
@@ -10,27 +14,15 @@ world.init({
   },
 })
 
-const square = createSquare({ x: 100, y: 100 }, 50)
-const chain = createChain({ x: 100, y: 100 }, 50, 3)
-
-const geometry = points.add([...square, ...chain])
-
 physics.addEngine({ x: 250, y: 100 })
 
-sticks.createFromPoints(geometry.slice(0, 4))
-sticks.add(geometry[3], geometry[0])
-// Add diagonal stick to square
-sticks.add(geometry[0], geometry[2], true)
-// Chain attached to the engine rotor
-sticks.add(physics.engine, geometry[4])
-sticks.add(geometry[4], geometry[5])
-sticks.add(geometry[5], geometry[0])
+data.feed(components)
 
-update()
+game.init({
+  world,
+  physics,
+  sticks,
+  points,
+})
 
-function update() {
-  world.update({ physics, sticks, points })
-  world.render({ physics, sticks, points })
-
-  requestAnimationFrame(update)
-}
+game.loop()
