@@ -7,8 +7,12 @@ export function createFromPoints(pointsToStick) {
   pointsToStick.forEach((p, index) => {
     if (index < lastIndex) {
       add(p, pointsToStick[index + 1])
+      if (index % 3 && index - 2 >= 0) {
+        add(p, pointsToStick[index - 2])
+      }
     }
   })
+  add(pointsToStick[lastIndex - 1], pointsToStick[0])
 }
 
 export function add(pointA, pointB, hidden) {

@@ -1,5 +1,4 @@
 let items = []
-
 let radius = 10
 
 export function add(points) {
@@ -27,6 +26,7 @@ export function update({ friction, gravity }) {
 }
 
 export function render(canvas) {
+  canvas.context.fillStyle = `rgba(255, 165, 10, 1)`
   for (let i = 0; i < items.length; i++) {
     const p = items[i]
     canvas.context.beginPath()

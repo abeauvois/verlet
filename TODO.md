@@ -1,1 +1,2 @@
 - refactor: unify points, shapes & data? in geometry
+- use Map() for entities (mainly points)

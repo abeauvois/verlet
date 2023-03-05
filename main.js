@@ -1,3 +1,4 @@
+import * as engines from './engines.js'
 import * as physics from './physics.js'
 import * as sticks from './sticks.js'
 import * as points from './points.js'
@@ -6,7 +7,9 @@ import * as game from './game.js'
 
 import * as data from './data.js'
 
-const components = { world, physics, sticks, points }
+const components = { world, engines, physics, sticks, points }
+
+physics.addEngine({ engines, withTail: true })
 
 world.init({
   onClick: ([x, y]) => {
@@ -14,15 +17,8 @@ world.init({
   },
 })
 
-physics.addEngine({ x: 250, y: 100 })
+// physics.noGravity()
 
-data.feed(components)
-
-game.init({
-  world,
-  physics,
-  sticks,
-  points,
-})
+game.init({ components, data })
 
 game.loop()

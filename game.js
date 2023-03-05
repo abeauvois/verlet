@@ -1,7 +1,8 @@
-export let components
+let components
 
 export function init(options) {
-  components = options
+  components = options.components
+  options.data?.feed(components)
 }
 
 export function loop() {

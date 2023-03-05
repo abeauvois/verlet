@@ -13,8 +13,8 @@ export function init(options) {
   return this
 }
 
-export function update({ physics, sticks, points }) {
-  physics.update()
+export function update({ physics, engines, sticks, points }) {
+  physics.update(engines)
   points.update(physics)
   for (let i = 0; i < verletIterations; i++) {
     sticks.update()
@@ -22,10 +22,10 @@ export function update({ physics, sticks, points }) {
   }
 }
 
-export function render({ physics, sticks, points }) {
+export function render({ engines, physics, sticks, points }) {
   canvas.clean()
   points.render(canvas)
   sticks.render(canvas)
-  physics.renderEngine(canvas)
+  engines.render(canvas)
   //   renderShapes()
 }

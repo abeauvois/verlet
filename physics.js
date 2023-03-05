@@ -1,36 +1,18 @@
-export let engine = {
-  baseX: 250,
-  baseY: 100,
-  range: 150,
-  angle: 0,
-  speed: 0.05,
-  x: 150,
-  y: 100,
-  pinned: true,
+import * as tail from './tail.js'
+import * as engines from './engines.js'
+
+export let bounce = 0.9
+export let gravity = 0.3
+export let friction = 0.999
+
+export function addEngine({ engines, p0, withTail = false }) {
+  engines.add({ baseX: p0?.x, baseY: p0?.y, pinned: true, withTail })
 }
 
-export const bounce = 0.9
-export const gravity = 0.5
-export const friction = 0.999
-
-export function addEngine(p0) {
-  engine = { ...engine, baseX: p0?.x ?? engine.baseX, baseY: p0?.y ?? engine.baseY }
-  return this
+export function update(engines) {
+  engines.update()
 }
 
-export function update() {
-  engine.x = engine.baseX + Math.cos(engine.angle) * engine.range
-  engine.angle += engine.speed
-}
-
-export function renderEngine(canvas) {
-  const { context } = canvas
-
-  context.beginPath()
-  context.rect(engine.baseX - engine.range, engine.baseY - 5, engine.range * 2, 10)
-  context.stroke()
-
-  context.beginPath()
-  context.arc(engine.x, engine.y, 5, 0, Math.PI * 2)
-  context.fill()
+export function noGravity() {
+  gravity = 0
 }
